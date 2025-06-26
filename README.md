@@ -14,7 +14,7 @@
   - [Database Setup](#database-setup)
   - [Project Setup (Eclipse)](#project-setup-eclipse)
   - [Database Credentials Configuration](#database-credentials-configuration)
-- [How to Run](#how-to-run)
+- [Final Run](#final-run)
 - [Usage](#usage)
 - [Demo](#demo)
 - [Contributing](#contributing)
@@ -61,12 +61,12 @@
 
 ## 🛠️ Technology Stack
 
-| Category       | Technology               | Version         | Purpose                             |
-|----------------|---------------------------|------------------|--------------------------------------|
-| Language        | Java                      | JDK 17+          | Core application logic               |
-| Database        | MS SQL Server             | Any recent       | Relational database                  |
-| Connectivity    | JDBC                      | Standard API     | Java-DB communication                |
-| IDE             | Eclipse IDE               | Latest stable    | Development environment              |
+| Category    | Technology       | Version        | Purpose                       |
+|-------------|------------------|----------------|-------------------------------|
+| Language    | Java             | JDK 17+        | Core application logic        |
+| Database    | MS SQL Server    | Any recent     | Relational data storage       |
+| Connectivity| JDBC             | Standard API   | Java to SQL communication     |
+| IDE         | Eclipse IDE      | Latest stable  | Development environment       |
 
 ---
 
@@ -128,17 +128,3 @@ VALUES ('Alice Smith', 'alice.s@example.com', '111-222-3333', '2000-01-15', 'Fem
 INSERT INTO Courses (course_name, duration)
 VALUES ('Introduction to Java', '3 months'),
        ('Database Fundamentals', '2 months');
-
-## ▶️ Final Run
-
-Once your database and credentials are set up:
-
-1. **Test DB Connection**
-   - Navigate to `src/com/EduConnect/util/DatabaseConnection.java`
-   - Right-click > `Run As` > `Java Application`
-   - Console should show: `Connection successful: true`
-
-2. **Run the Application**
-   - Navigate to `src/com/EduConnect/app/EduConnectApp.java`
-   - Right-click > `Run As` > `Java Application`
-   - Use the console menu to manage Students, Courses, and Enrollments
