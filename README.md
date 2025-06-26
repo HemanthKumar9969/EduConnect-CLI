@@ -129,3 +129,16 @@ INSERT INTO Courses (course_name, duration)
 VALUES ('Introduction to Java', '3 months'),
        ('Database Fundamentals', '2 months');
 
+## ▶️ Final Run
+
+Once your database and credentials are set up:
+
+1. **Test DB Connection**
+   - Navigate to `src/com/EduConnect/util/DatabaseConnection.java`
+   - Right-click > `Run As` > `Java Application`
+   - Console should show: `Connection successful: true`
+
+2. **Run the Application**
+   - Navigate to `src/com/EduConnect/app/EduConnectApp.java`
+   - Right-click > `Run As` > `Java Application`
+   - Use the console menu to manage Students, Courses, and Enrollments
