@@ -81,5 +81,36 @@
 - Eclipse IDE
 
 ---
+### 🧩 Project Setup (Eclipse)
+
+1: Clone the Repository: git clone https://github.com/HemanthKumar9969/EduConnect-CLI.git
+
+2: Import into Eclipse: File > Import > General > Existing Projects into Workspace, Select the cloned folder, Click Finish
+
+3: Add SQL JDBC Driver: Download latest driver from Microsoft, Right-click project > Build Path > Configure Build Path > Libraries > Add External JARs, Select the JDBC .jar file and apply
+
+---
+### 🧪 Usage
+
+--- Welcome to EduConnect ---
+
+Main Menu:
+1. Students
+2. Courses
+3. Enrollments
+4. Exit
+
+Choice: _
+
+## Use numbers to navigate menus.
+## Each section supports full CRUD operations.
+## Dates should follow format: DD-MM-YYYY.
+
+---
+### 📹 Demo
+Here's a quick preview of how EduConnect-CLI works:
+
+
+
 
 
