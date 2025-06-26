@@ -11,15 +11,8 @@
 - [Technology Stack](#technology-stack)
 - [Setup Guide](#setup-guide)
   - [Prerequisites](#prerequisites)
-  - [Database Setup](#database-setup)
-  - [Project Setup (Eclipse)](#project-setup-eclipse)
-  - [Database Credentials Configuration](#database-credentials-configuration)
-- [Final Run](#final-run)
 - [Usage](#usage)
 - [Demo](#demo)
-- [Contributing](#contributing)
-- [License](#license)
-
 ---
 
 ## 📘 About the Project
