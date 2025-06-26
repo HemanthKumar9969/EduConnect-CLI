@@ -16,11 +16,13 @@ public class EduConnectApp {
     private static StudentDAO sDao = new StudentDAO();
     private static CourseDAO cDao = new CourseDAO();
     private static EnrollmentDAO eDao = new EnrollmentDAO();
+
     private static Scanner sc = new Scanner(System.in);
+
     private static final SimpleDateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
 
     public static void main(String[] args) {
-        System.out.println("--- Welcome to EduConnect ---");
+        System.out.println("--- EduConnect ---");
         int ch;
         do {
             System.out.println("\nMain Menu:\n1. Students\n2. Courses\n3. Enrollments\n4. Exit");
@@ -48,13 +50,29 @@ public class EduConnectApp {
     }
 
     private static Date getDate(String p) {
-        System.out.print(p);
-        try {
-            return new Date(DF.parse(sc.nextLine()).getTime());
-        } catch (Exception e) {
-            System.out.println("Invalid date (DD-MM-YYYY).");
-            return null;
-        }
+        String dateString;
+        Date parsedDate = null;
+        boolean isValidDate = false;
+
+        do {
+            System.out.print(p);
+            dateString = sc.nextLine().trim();
+
+            if (dateString.isEmpty()) {
+                parsedDate = null;
+                isValidDate = true;
+            } else {
+                try {
+                    parsedDate = new Date(DF.parse(dateString).getTime());
+                    isValidDate = true;
+                } catch (Exception e) {
+                    System.out.println("Invalid date (DD-MM-YYYY). Please try again or press Enter to skip.");
+                    isValidDate = false;
+                }
+            }
+        } while (!isValidDate);
+
+        return parsedDate;
     }
 
     private static void handleStudentOps() {
@@ -77,7 +95,15 @@ public class EduConnectApp {
 
     private static void addStudent() {
         System.out.print("Enter Name: "); String n = sc.nextLine();
-        System.out.print("Enter Email: "); String e = sc.nextLine();
+        String e;
+        do {
+            System.out.print("Enter Email: "); e = sc.nextLine().trim();
+            if (e.isEmpty() || e.equalsIgnoreCase("blank")) {
+                System.out.println("Email cannot be empty or 'blank'. Please enter a valid email.");
+            } else {
+                break;
+            }
+        } while (true);
         System.out.print("Enter Phone: "); String p = sc.nextLine();
         Date d = getDate("Enter DOB (DD-MM-YYYY): ");
         System.out.print("Enter Gender: "); String g = sc.nextLine();
@@ -94,7 +120,57 @@ public class EduConnectApp {
         System.out.print("ID to update: "); int id = getInt();
         Student s = sDao.getStudentById(id);
         if (s == null) { System.out.println("Not found."); return; }
-        System.out.print("New Name (blank): "); String n = sc.nextLine(); if(!n.isEmpty()) s.setName(n);
+
+        System.out.println("Current Details: " + s);
+
+        System.out.print("New Name (press Enter to keep current '" + s.getName() + "'): ");
+        String n = sc.nextLine().trim();
+        if (!n.isEmpty()) {
+            if (n.equalsIgnoreCase("blank")) {
+                System.out.println("Keeping current Name: '" + s.getName() + "'");
+            } else {
+                s.setName(n);
+            }
+        }
+
+        String emInput;
+        do {
+            System.out.print("New Email (press Enter to keep current '" + s.getEmail() + "'): ");
+            emInput = sc.nextLine().trim();
+            if (emInput.isEmpty()) {
+                break;
+            } else if (emInput.equalsIgnoreCase("blank")) {
+                System.out.println("Email cannot be 'blank'. Please enter a valid email or just press Enter.");
+            } else {
+                s.setEmail(emInput);
+                break;
+            }
+        } while (true);
+
+
+        System.out.print("New Phone (press Enter to keep current '" + s.getPhone() + "'): ");
+        String p = sc.nextLine().trim();
+        if (!p.isEmpty()) {
+            if (p.equalsIgnoreCase("blank")) {
+                System.out.println("Keeping current Phone: '" + s.getPhone() + "'");
+            } else {
+                s.setPhone(p);
+            }
+        }
+
+        Date d = getDate("New DOB (DD-MM-YYYY, press Enter to keep current '" + s.getDob() + "'): ");
+        if (d != null) s.setDob(d);
+
+        System.out.print("New Gender (press Enter to keep current '" + s.getGender() + "'): ");
+        String g = sc.nextLine().trim();
+        if (!g.isEmpty()) {
+            if (g.equalsIgnoreCase("blank")) {
+                System.out.println("Keeping current Gender: '" + s.getGender() + "'");
+            } else {
+                s.setGender(g);
+            }
+        }
+
         System.out.println(sDao.updateStudent(s) ? "Updated." : "Failed.");
     }
 
@@ -128,8 +204,7 @@ public class EduConnectApp {
     }
 
     private static void viewCourseById() {
-        System.out.print("ID: "); int id = getInt();
-        Course c = cDao.getCourseById(id);
+        System.out.print("ID: "); int id = getInt(); Course c = cDao.getCourseById(id);
         System.out.println(c != null ? c : "Not found.");
     }
 
@@ -137,7 +212,29 @@ public class EduConnectApp {
         System.out.print("ID to update: "); int id = getInt();
         Course c = cDao.getCourseById(id);
         if (c == null) { System.out.println("Not found."); return; }
-        System.out.print("New Name (blank): "); String n = sc.nextLine(); if(!n.isEmpty()) c.setCourseName(n);
+
+        System.out.println("Current Details: " + c);
+
+        System.out.print("New Course Name (press Enter to keep current '" + c.getCourseName() + "'): ");
+        String n = sc.nextLine().trim();
+        if (!n.isEmpty()) {
+            if (n.equalsIgnoreCase("blank")) {
+                System.out.println("Keeping current Course Name: '" + c.getCourseName() + "'");
+            } else {
+                c.setCourseName(n);
+            }
+        }
+
+        System.out.print("New Duration (press Enter to keep current '" + c.getDuration() + "'): ");
+        String d = sc.nextLine().trim();
+        if (!d.isEmpty()) {
+            if (d.equalsIgnoreCase("blank")) {
+                System.out.println("Keeping current Duration: '" + c.getDuration() + "'");
+            } else {
+                c.setDuration(d);
+            }
+        }
+
         System.out.println(cDao.updateCourse(c) ? "Updated." : "Failed.");
     }
 
@@ -177,8 +274,7 @@ public class EduConnectApp {
     }
 
     private static void viewEnrollmentById() {
-        System.out.print("ID: "); int id = getInt();
-        Enrollment e = eDao.getEnrollmentById(id);
+        System.out.print("ID: "); int id = getInt(); Enrollment e = eDao.getEnrollmentById(id);
         System.out.println(e != null ? e : "Not found.");
     }
 
@@ -193,8 +289,7 @@ public class EduConnectApp {
     }
 
     private static void updateEnrollment() {
-        System.out.print("ID to update: "); int id = getInt();
-        Enrollment e = eDao.getEnrollmentById(id);
+        System.out.print("ID to update: "); int id = getInt(); Enrollment e = eDao.getEnrollmentById(id);
         if (e == null) { System.out.println("Not found."); return; }
         System.out.print("New Student ID (blank): "); String sIdStr = sc.nextLine();
         if (!sIdStr.isEmpty()) { int newSId = Integer.parseInt(sIdStr); if (sDao.getStudentById(newSId) != null) e.setStudentId(newSId); else System.out.println("Student not found. ID kept."); }
@@ -209,4 +304,3 @@ public class EduConnectApp {
         System.out.println(eDao.deleteEnrollment(id) ? "Deleted." : "Failed.");
     }
 }
-
