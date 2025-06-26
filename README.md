@@ -102,13 +102,10 @@ Main Menu:
 
 Choice: _
 
-## Use numbers to navigate menus.
-## Each section supports full CRUD operations.
-## Dates should follow format: DD-MM-YYYY.
-
 ---
 ### 📹 Demo
 Here's a quick preview of how EduConnect-CLI works:
+
 
 
 
