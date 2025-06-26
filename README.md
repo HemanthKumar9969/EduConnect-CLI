@@ -98,8 +98,7 @@ Choice: _
 ---
 ### 📹 Demo
 Here's a quick preview of how EduConnect-CLI works:
-
-![1st](https://github.com/user-attachments/assets/92d0ce05-7de8-4ca3-aa06-bc39e3d7b7c3)
+![8t87t](https://github.com/user-attachments/assets/f4f5e075-516b-4ab0-8c09-6a719da102ec)
 
 
 
