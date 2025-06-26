@@ -16,13 +16,13 @@ public class DatabaseConnection {
     // "databaseName=StudentDB": Specifies the name of the database to connect to.
     // "encrypt=true;trustServerCertificate=true;": Common parameters for local SQL Server setups,
     //   `encrypt=true` means data is encrypted, `trustServerCertificate=true` bypasses certificate validation (good for dev, not prod).
-    private static final String DB_URL = "jdbc:sqlserver://localhost:9988;databaseName=StudentDB;encrypt=true;trustServerCertificate=true;";
+    private static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=StudentDB;encrypt=true;trustServerCertificate=true;";
 
     // USER: The username for logging into the SQL Server. You MUST change this.
-    private static final String USER = "sa"; // Example: "sa"
+    private static final String USER = "your username"; // Example: "sa"
 
     // PASS: The password for the SQL Server user. You MUST change this.
-    private static final String PASS = "009988"; // Example: "StrongP@ssw0rd!"
+    private static final String PASS = "your password"; // Example: "StrongP@ssw0rd!"
 
     /**
      * Public static method to get a database connection.
